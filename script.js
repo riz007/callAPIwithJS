@@ -1,14 +1,16 @@
 var xmlhttp = new XMLHttpRequest();
 var url = "https://jsonplaceholder.typicode.com/posts";
 
-xmlhttp.onreadystatechange = function() {
+xmlhttp.open("GET", url, true);
+
+xmlhttp.onload = function() {
     if(this.readyState == 4 && this.status == 200) {
         var jsonArr = JSON.parse(this.responseText);
         displayFunction(jsonArr);
     }
 };
-xmlhttp.open("GET", url, false);
 xmlhttp.send();
+
 function displayFunction(arr) {
     var result = "";
     var pretable = '<tr>' + '<th>Post ID</th>' + '<th>Post Title</th>' +'<th>Description</th>' + '</tr>';
